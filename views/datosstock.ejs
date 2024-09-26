@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link rel="stylesheet" href="estilos-paginas.css">
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap");
+    </style>
+    <script src="index.js"></script>
+    <title>Materiales</title>
+  </head>
+  <body class="cuerpo" id="contenidostock">
+    <nav class="navbar navbar-inverse" style="border-radius: 0;">
+      <div class="container-fluid d-flex justify-content-center">
+        <a class="navbar-brand" href="#">
+          <img src="imagenes/logo-gdf.jpg" width="30" height="30" class="d-inline-block align-text-top"/>
+        </a>
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/inicio">Inicio</a></li>
+            <li><a href="/departamentos">Departamentos</a></li>
+            <li><a href="/datosstock">Stock</a></li>
+            <li><a href="/herramientas">Herramientas</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/salir"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+  
+    <div class="content">
+      <header class="header">
+      <img class="imagen" src="imagenes/ICONOMATERIALES.png" width="200">
+      
+        <h1>EN EXISTENCIA</h1>
+      
+      </header>
+
+      <div class="tabla">
+      <table class="table table-bordered table-striped table-hover" border="1">
+        <thead>
+          <tr>
+            <th class="text-center vertical-align-middle">ID</th>
+            <th class="text-center vertical-align-middle">Material</th>
+            <th class="text-center vertical-align-middle">Cantidad</th>
+            <th class="text-center vertical-align-middle">Departamento</th>
+            <th class="text-center vertical-align-middle">
+              <button type="button" class="btn btn-classic" data-toggle="modal" data-target="#modal-stock">Agregar Material</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="datosstock">
+          <% data.forEach(function(row) { %>
+            <tr>
+              <td ><%= row.idmateriales %></td>
+              <td><%= row.nombre %></td>
+              <td><%= row.cantidad %></td>
+              <td><%= row.departamento %></td>
+              <td>
+                <button type="button" data-toggle="modal" data-target="#modalEditar<%= row.idmateriales %>"  class="btn btn-warning">Editar</button>
+                
+                <a href="/borrar/<%= row.idmateriales %>" class="btn btn-danger">Borrar</a> 
+              </td>
+              <!--Modal Editar-->
+              <div 
+                id="modalEditar<%= row.idmateriales %>" 
+                class="modal fade"
+                tabindex="-1" 
+                role="dialog"
+                aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="contenido-modal">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Editar Cantidad</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/editarcantidad/<%= row.idmateriales %>" method="post">
+                        <div class="form-group">
+                          <label for="cantidad">Cantidad:</label>
+                          <input type="number" class="forml-control" id="cantidad" name="cantidad" required/>
+                        </div>
+              
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div> 
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      </div>
+
+      <!-- Modal agregar material -->
+      <div
+      class="modal fade"
+      id="modal-stock"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+      >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Agregar Materiales
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/agregarmateriales" method="post">
+              <div class="form-group">
+                <label for="material">Material:</label>
+                <input type="text" class="form-control" id="material" name="nombre" placeholder="Ingrese el nombre" required/>
+              </div>
+              <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" required/>
+              </div>
+              <div class="form-group">
+                <label for="departamento">Departamento:</label>
+                <select class="form-control" id="iddepartamento" name="iddepartamento" placeholder="Ingrese el departamento" required>
+                  <option id="" value="">--Seleccionar departamento--</option>
+                  <option id="1" value="1">Herreria</option>
+                  <option id="2" value="2">Albañileria</option>
+                  <option id="3"value="3">Electricidad</option>
+                  <option id="4" value="4">Pintura</option>
+                  <option id="5" value="5">Finalización</option>
+                  <option id="6" value="6">Plomeria</option>
+                </select>
+              </div>
+              <div>
+                <label for="fecha">Fecha Modificación</label>
+                <input type="date" id="fechamodificacion" name="fechamodificacion" required/>
+              </div>
+           
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div> 
+        </form>
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+  <footer class="footer">
+  	<p><a href="aldana.albani@gmail.com">Contactanos</a></p>
+</footer>
+</html>

@@ -1,0 +1,31 @@
+<%- include('partials/_header') %>
+<link rel="stylesheet" href= "index.css">
+    <title>GDC Control</title>
+	
+<header class="header">
+		<h1>¡Hola, <%= user.usuario%>!</h1>
+	</header>
+	<div class="content">
+    <section class="menu-eleccion">
+		<figure class="eleccion">
+			<a href="/departamentos" action=""><img src="imagenes/proyectos2.jpeg" width="200px"></a>
+			<figcaption>Departamentos</figcaption>
+		</figure>
+      <figure class="eleccion">
+		<a href="/datosstock"><img src="imagenes/materiales2.jpeg" width="200px" id="imgMateriales" ></a>
+		<figcaption>Materiales</figcaption>
+	</figure>
+	<figure class="eleccion">
+        <a href="/proyectos"><img src="imagenes/proyectos3.jpeg" width="200px"></a>
+        <figcaption>Proyectos</figcaption>
+    </figure>
+      <figure class="eleccion">
+		<a href="/herramientas"><img src="imagenes/herramientas.jpeg" width="200px"></a>
+		<figcaption>Herramientas</figcaption>
+	</figure>
+      
+    </section>
+
+	<script src="index.js"></script>	
+</div>
+	<%- include('partials/_footer') %>

@@ -1,0 +1,197 @@
+/*estilo caja/ pagina login*/
+
+.body-login {
+    background-image: url(imagenes/20230812_163902.jpg);
+    background-attachment:fixed;
+    background-size: cover;
+    background-repeat: repeat;
+}   
+.caja-login{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 70vh;
+    justify-content:space-arounds;
+    align-items: center;
+    text-align: center;
+    margin: 90px auto;
+    background-size:auto;
+    background-color: rgba(0, 0, 0, 0.474);
+    backdrop-filter: blur(10px); /* Aplicar un desenfoque de 10px al fondo */
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    border-radius: 45px;
+}
+
+.caja-login h1{
+    color: rgb(222, 136, 24);
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-top: 40px;
+    padding-bottom: 0;
+}
+
+.caja-login h2{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 8px;
+    color: rgb(208, 208, 208);
+}
+
+.caja-login input {
+    padding: 20px 10px;
+    margin: 15px;
+    justify-content: center;
+    width: 75%;
+    border-radius: 45px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border: none;
+    color: rgb(222, 136, 24);
+}
+
+.ingresar{
+    width: 50%;
+    color: azure;
+    background-color: rgb(222, 136, 24);
+    padding: 20px 10px;
+    margin: 15px;
+    justify-content: center;
+    border-radius: 45px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+form{
+    margin: 0 auto;
+  max-width: 500px;
+  min-width: 300px;
+  width: 60vw;
+}
+
+a {
+    padding-top: 20px;
+    color: rgb(81, 118, 238);
+    font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*---------------footer-------------*/
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+.footer-inicio {
+    background-color: black;
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 0;
+    padding: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+}
+
+.footer-inicio a {
+    margin-right: 20px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+    text-align: right;
+}
+/*fin*/
+
+
+/*---------------estilo pagina de inicio -------------------*/
+.container-fluid {
+    background-color: black;
+   
+}
+.navbar-toggle {
+    background-color: black;
+
+}
+
+
+
+.header {
+    justify-content: flex-end;
+    text-align: left;
+    font-size: 45px;
+    font-style: normal;
+    font-family: 'SUSE', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    padding-top: 0;
+    padding-bottom: 16px;
+    padding-left:  25px;
+	margin: 0;
+    color: rgb(222, 136, 24);
+}
+
+/*----cuerpo----*/
+.menu-eleccion {
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: center;
+    margin: auto;
+    padding: auto;
+}
+.eleccion {
+    flex-flow: column;
+    justify-content: space-evenly;
+	width: 40%;
+	height: 40%;
+	text-align: center;
+	align-items: center;
+    padding-bottom: auto; 
+}
+figure {
+    font-weight: 700;
+    color:rgb(222, 136, 24);
+}
+
+figcaption {
+    text-decoration: none;
+    font-family: "SUSE" , sans-serif;
+    font-size: larger;
+    padding: auto;
+}
+.menu-eleccion img {
+    border-radius: 50%;
+    margin: 0;
+    padding: 2px 0 0 0;
+
+}
+
+/*-------------- PAGINA DEPARTAMENTOS -----------------*/
+
+.lista-dep {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.lista-dep a {
+    pointer-events: fill;
+}

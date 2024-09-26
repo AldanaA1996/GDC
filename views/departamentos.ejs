@@ -1,0 +1,73 @@
+<%- include('partials/_header') %>
+<link rel="stylesheet" href="estilos-paginas.css">
+<title>Departamentos</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="content">
+    <div class="lista-dep">
+        <img src="imagenes/DEPARTAMENTOSICONO.png">
+        <a href="/finalizacion"><img src="imagenes/ICONOFINALIZACION.png"></a>
+        <a href="/albanileria"><img src="imagenes/ICONOALBANILERIA.png"></a>
+        <a href="/electricidad"><img src="imagenes/ICONOELECTRICIDAD.png"></a>
+        <a href="/herreria"><img src="imagenes/ICONOHERRERIA.png"></a>
+        <a href="/pintureria"><img src="imagenes/ICONOPINTURERIA.png"></a>
+        <a href="/plomeria"><img src="imagenes/ICONOPLOMERIA.png"></a>
+        
+    </div>
+
+    <div class="contenido-dep">
+        <div class="tabla">
+            <table id="tabla-dep" class="table table-bordered table-striped table-hover" border="1">
+                <thead>
+                    <tr>
+                        <th class="text-center vertical-align-middle">ID</th>
+                        <th class="text-center vertical-align-middle">Material</th>
+                        <th class="text-center vertical-align-middle">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>document.addEventListener('DOMContentLoaded', function() {
+    // Función para actualizar la tabla
+    function actualizarTabla(url) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al cargar los datos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Vaciar el contenido actual de la tabla
+                document.querySelector('#tabla-dep tbody').innerHTML = '';
+                
+                // llenar la tabla con los nuevos datos
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${row.idmateriales}</td>
+                        <td>${row.nombre}</td>
+                        <td>${row.cantidad}</td>
+                    `;
+                    document.querySelector('#tabla-dep tbody').appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Error en el pedido:', error);
+            });
+    }
+
+    // Eventos de clic en los enlaces
+    document.querySelectorAll('.lista-dep a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Evitar el comportamiento por defecto del enlace
+            const url = this.getAttribute('href'); // Obtener URL del enlace
+            actualizarTabla(url); // Actualizar tabla con los datos de la URL
+        });
+    });
+});</script>
+<%- include('partials/_footer') %>

@@ -1,0 +1,155 @@
+<%- include('partials/_header') %>
+<script type="text/javascript src="index.js"></script>
+<link rel="stylesheet" href="estilos-paginas.css">
+<div class="content">
+    <header class="header">
+        <img class="imagen" src="imagenes/HERRAMIENTAS.png" width="200">
+        <h1>HERRAMIENTAS</h1>   
+    </header>
+
+    <div class="tabla">
+    <table class="table table-bordered table-striped table-hover" border="1">
+      <thead>
+        <tr>
+          <th class="text-center vertical-align-middle">ID</th>
+          <th class="text-center vertical-align-middle">NOMBRE</th>
+          <th class="text-center vertical-align-middle">CANTIDAD</th>
+          <th class="text-center vertical-align-middle">ESTADO</th>
+          <th class="text-center vertical-align-middle">
+            <button type="button" class="btn btn-classic" data-toggle="modal" data-target="#modal-herr">Agregar Herramienta</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="datosherr">
+        <% data.forEach(function(row) { %>
+          <tr>
+            <td ><%= row.idherramienta %></td>
+            <td><%= row.nombre %></td>
+            <td><%= row.cantidad %></td>
+            <td><%= row.estado %></td>
+            <td>
+                <button type="button" data-toggle="modal" data-target="#modalEditar<%= row.idherramienta %>"  class="btn btn-warning">CANTIDAD</button>
+                
+                <button type="button" data-toggle="modal" data-target="#modalEstado<%= row.idherramienta %>"  class="btn btn-warning">ESTADO</button>
+              </td>
+              <!--Modal Editar-->
+              <div 
+                id="modalEditar<%= row.idherramienta %>" 
+                class="modal fade"
+                tabindex="-1" 
+                role="dialog"
+                aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="contenido-modal">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Editar Cantidad</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/editarherr/<%= row.idherramienta %>" method="post">
+                        <div class="form-group">
+                          <label for="cantidad">Cantidad:</label>
+                          <input type="number" class="form-control" id="cantidad" name="cantidad" required/>
+                        </div>
+              
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div> 
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- /.modal estado -->
+             <div 
+             id="modalEstado<%= row.idherramienta %>" 
+             class="modal fade"
+             tabindex="-1" 
+             role="dialog"
+             aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+               <div class="contenido-modal">
+                 <div class="modal-header">
+                   <h4 class="modal-title">Editar Estado</h4>
+                 </div>
+                 <div class="modal-body">
+                   <form action="/editarestado/<%= row.idherramienta %>" method="post">
+                     <div class="form-group">
+                        <select class="form-control" id="estado" name="estado" placeholder="Ingrese el estado actual" required>
+                          <option id="" value="">--Seleccionar estado--</option>
+                          <option id="1" value="EN USO">EN USO</option>
+                          <option id="2" value="EN REPARACION">EN REPARACION</option>
+                        </select>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                     </div> 
+                   </form>
+                 </div>
+               </div>
+             </div>
+           </div>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Modal agregar herramienta -->
+    <div
+      class="modal fade"
+      id="modal-herr"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Agregar Herramienta
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/agregarherr" method="post">
+              <div class="form-group">
+                <label for="material">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required/>
+              </div>
+              <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingrese la cantidad" required/>
+              </div>
+              <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select class="form-control" id="estado" name="estado" placeholder="Ingrese el estado actual" required>
+                  <option id="" value="">--Seleccionar estado--</option>
+                  <option id="1" value="EN USO">EN USO</option>
+                  <option id="2" value="EN REPARACION">EN REPARACION</option>
+                  
+                </select>
+              </div>
+                         
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div> 
+        </form>
+        </div>
+      </div>
+      </div>
+  </div>
+<%- include('partials/_footer') %>
