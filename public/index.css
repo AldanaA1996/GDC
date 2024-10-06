@@ -184,14 +184,3 @@ figcaption {
 
 }
 
-/*-------------- PAGINA DEPARTAMENTOS -----------------*/
-
-.lista-dep {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.lista-dep a {
-    pointer-events: fill;
-}

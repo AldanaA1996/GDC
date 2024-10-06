@@ -120,3 +120,20 @@ th, td{
 }
 
 
+/*-------------- PAGINA DEPARTAMENTOS -----------------*/
+
+.lista-dep {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+    
+}
+
+.lista-dep a img {
+    width: 100%;
+}
+
+.lista-dep a {
+    pointer-events: fill;
+}
