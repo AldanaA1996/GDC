@@ -61,23 +61,7 @@ conexion.on('error', (err) => {
 handleDisconnect();
 
 // Rutas
-servidor.get("/", (req, res) => {
-  res.render("index");
-});
-servidor.get('/inicio', (req, res) => {
-  if (req.session.user) {
-    res.render("inicio", {user: req.session.user});
-  } else {
-    res.redirect('/');
-  }
-});
-servidor.get("/departamentos", (req, res) => {
-  res.render("departamentos");
-});
-
-servidor.get("/proyectos", (req, res) => {
-  res.render("proyectos");
-});
+//inicio de sesion -------------------------------
 servidor.post("/ingresar", (req, res) => {
   const { usuario, password } = req.body;
   const sql = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
@@ -98,7 +82,27 @@ servidor.post("/ingresar", (req, res) => {
     }
   });
 });
+//---------fin---------------
+servidor.get("/", (req, res) => {
+  res.render("index");
+});
+//cargar saludo personalizado
+servidor.get('/inicio', (req, res) => {
+  if (req.session.user) {
+    res.render("inicio", {user: req.session.user});
+  } else {
+    res.redirect('/');
+  }
+});
+servidor.get("/departamentos", (req, res) => {
+  res.render("departamentos");
+});
 
+servidor.get("/proyectos", (req, res) => {
+  res.render("proyectos");
+});
+
+//-------traer datos de la tabla herramientas--------------------------------
 
 const tools = "SELECT idherramienta, nombre, cantidad, estado from herramientas";
 servidor.get('/herramientas', (req, res) => {
@@ -112,10 +116,7 @@ servidor.get('/herramientas', (req, res) => {
   });
 });
 
-//cargar saludo personalizado
-
-
-//------------------------------------
+//traer datos de la tabla materiales ----------------------------------------------------------------
 const materialesDB = "select idmateriales, m.nombre, cantidad, d.nombre as departamento from materialesf m join departamentos d on m.iddepartamento = d.iddepa";
 servidor.get('/datosstock', (req, res) => {
   conexion.query(materialesDB, (error, results) => {
@@ -130,6 +131,7 @@ servidor.get('/datosstock', (req, res) => {
 
 //traer los materiales de un departamento especifico
 const albanileria = "select idmateriales, m.nombre, cantidad from materialesf m where iddepartamento = 2";
+//albanileria
 servidor.get('/albanileria', (req, res) => {
   conexion.query(albanileria, (error, results) => {
     if (error) {
@@ -165,7 +167,18 @@ servidor.get('/herreria', (req, res) => {
     res.json(results)
   });
 });
-
+//pañol
+const paniol = "select idmateriales, m.nombre, cantidad from materialesf m where iddepartamento = 7";
+servidor.get('/paniol', (req, res) => {
+  conexion.query(paniol, (error, results) => {
+    if (error) {
+      console.error('Error en la consulta: ', error);
+      res.status(500).send('Error en la consulta a la base de datos');
+      return;
+    }
+    res.json(results)
+  });
+});
 //pintureria
 const pintureria = "select idmateriales, m.nombre, cantidad from materialesf m where iddepartamento = 4";
 servidor.get('/pintureria', (req, res) => {
@@ -260,7 +273,7 @@ servidor.post('/editarestado/:id', (req, res) => {
     res.redirect('/herramientas');
   });
 });
-//ruta para editar una herramienta
+//ruta para editar cantidad de una herramienta
 servidor.post('/editarherr/:id', (req, res) => {
   const id = req.params.id;
   const cantidad = req.body.cantidad;
@@ -317,8 +330,6 @@ servidor.listen(servidor.get('port'), () => {
 
 // cerrar sesion del usuario
 
-
-// controlador para cerrar sesion
 servidor.get('/salir', (req, res) => {
   req.session.destroy(err => {
     if (err) {
