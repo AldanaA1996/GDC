@@ -126,7 +126,8 @@ html, body {
 /*---------------estilo pagina de inicio -------------------*/
 .container-fluid {
     background-color: black;
-   
+    font-family: 'SUSE', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
 }
 .navbar-toggle {
     background-color: black;
