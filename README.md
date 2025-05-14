@@ -20,8 +20,8 @@
 ---
 
 ## **🛠️ Requisitos previos**
-- Python 3.10+ (o el lenguaje que uses).
-- Base de datos (ej: PostgreSQL, SQLite).
+
+- Base de datos MySql (ej: PostgreSQL, SQLite).
 - Git (para contribuciones).
 
 ---
@@ -33,8 +33,7 @@
    cd GDC
 Instala dependencias:
 
-bash
-pip install -r requirements.txt  # Si es Python
+
 Configura la base de datos:
 
 Crea un archivo .env con tus credenciales:
@@ -74,9 +73,6 @@ MIT. Ver LICENSE.
 
 ---
 
-### **2. Archivos adicionales recomendados**
-#### **A. `docs/guia-de-uso.md`** (Detalles específicos)
-```markdown
 # Guía de Uso para GDC
 
 ## Registro de una herramienta
@@ -90,8 +86,7 @@ MIT. Ver LICENSE.
 ## Control de materiales
 - Usa el menú **Materiales** para actualizar stock.
 - Genera reportes en **Reportes > Inventario**.
-B. docs/arquitectura.md (Para desarrolladores)
-markdown
+
 # Diagrama de flujo
 ```mermaid
 flowchart TD
