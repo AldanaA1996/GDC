@@ -1,34 +1,4 @@
-<%- include('partials/_header') %>
-<title>Departamentos</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<div class="content">
-    <div class="lista-dep">
-        <img src="imagenes/DEPARTAMENTOSICONO.png">
-        <a href="/albanileria"><img src="imagenes/ICONOALBANILERIA.png"></a>
-        <a href="/electricidad"><img src="imagenes/ICONOELECTRICIDAD.png"></a>
-        <a href="/herreria"><img src="imagenes/ICONOHERRERIA.png"></a>
-        <a href="/pintureria"><img src="imagenes/ICONOPINTURERIA.png"></a>
-        <a href="/plomeria"><img src="imagenes/ICONOPLOMERIA.png"></a>
-    </div>
-
-    <div class="contenido-dep">
-        <div class="tabla">
-            <table id="tabla-dep" class="table table-bordered table-striped table-hover" border="1">
-                <thead>
-                    <tr>
-                        <th class="text-center vertical-align-middle">ID</th>
-                        <th class="text-center vertical-align-middle">Material</th>
-                        <th class="text-center vertical-align-middle">Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<script>document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Función para actualizar la tabla
     function actualizarTabla(url) {
         fetch(url)
@@ -66,5 +36,4 @@
             actualizarTabla(url); // Actualizar tabla con los datos de la URL
         });
     });
-});</script>
-<%- include('partials/_footer') %>
+});
